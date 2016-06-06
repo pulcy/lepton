@@ -16,7 +16,9 @@ package loggly
 
 import (
 	"errors"
+	"io/ioutil"
 	"os"
+	"strings"
 
 	"github.com/pulcy/lepton/adapters"
 )
@@ -27,7 +29,16 @@ func init() {
 
 func newLogglyAdapter() (adapters.LogAdapter, error) {
 	token := os.Getenv("LOGGLY_TOKEN")
+	tokenPath := os.Getenv("LOGGLY_TOKEN_FILE")
 	tags := os.Getenv("LOGGLY_TAGS")
+
+	if token == "" && tokenPath != "" {
+		raw, err := ioutil.ReadFile(tokenPath)
+		if err != nil {
+			return nil, maskAny(err)
+		}
+		token = strings.TrimSpace(string(raw))
+	}
 
 	if token == "" {
 		return nil, maskAny(errors.New("Environment variable LOGGLY_TOKEN not set"))

@@ -14,3 +14,11 @@ docker run -it --net=host \
     -e LOGGLY_TOKEN=<your loggly token> \
     pulcy/lepton:latest
 ```
+
+## Adapters
+
+### Loggly
+
+- `LOGGLY_TOKEN` Token for loggly account
+- `LOGGLY_TOKEN_FILE` Path of file containing the loggly token
+- `LOGGLY_TAGS` Tags forwarded to loggly
