@@ -1,0 +1,5 @@
+{
+	"registry": "pulcy",
+	"tag-latest": true,
+	"image": "lepton"
+}
