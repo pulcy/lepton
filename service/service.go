@@ -79,6 +79,16 @@ func (s *service) processMessages(entries chan *JournalEntry, messages chan *ada
 			Hostname:  entry.Hostname,
 			MachineID: entry.MachineId,
 		}
+		j2names, ok := ParseUnitName(entry.SystemdUnit)
+		if ok {
+			message.J2JobName = j2names.JobName
+			message.J2GroupName = j2names.GroupName
+			message.J2GroupFull = fmt.Sprintf("%s.%s", j2names.JobName, j2names.GroupName)
+			message.J2TaskName = j2names.TaskName
+			message.J2TaskFull = fmt.Sprintf("%s.%s.%s", j2names.JobName, j2names.GroupName, j2names.TaskName)
+			message.J2Kind = j2names.Kind
+			message.J2Instance = j2names.Instance
+		}
 		messages <- message
 	}
 }

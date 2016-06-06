@@ -24,4 +24,12 @@ type logglyMessage struct {
 	Unit      string    `json:"unit,omitempty"`
 	Hostname  string    `json:"hostname,omitempty"`
 	MachineID string    `json:"machine_id,omitempty"`
+
+	J2JobName   string `json:"j2_job,omitempty"`
+	J2GroupName string `json:"j2_group,omitempty"`
+	J2GroupFull string `json:"j2_group_full,omitempty"`
+	J2TaskName  string `json:"j2_task,omitempty"`
+	J2TaskFull  string `json:"j2_task_full,omitempty"`
+	J2Kind      string `json:"j2_kind,omitempty"`
+	J2Instance  string `json:"j2_instance,omitempty"`
 }

@@ -61,11 +61,18 @@ func New(logglyToken string, tags string, bufferSize int) *Adapter {
 func (l *Adapter) Stream(logstream chan *adapters.Message) {
 	for m := range logstream {
 		l.queue <- logglyMessage{
-			Timestamp: m.Timestamp,
-			Message:   m.Message,
-			Unit:      m.Unit,
-			Hostname:  m.Hostname,
-			MachineID: m.MachineID,
+			Timestamp:   m.Timestamp,
+			Message:     m.Message,
+			Unit:        m.Unit,
+			Hostname:    m.Hostname,
+			MachineID:   m.MachineID,
+			J2JobName:   m.J2JobName,
+			J2GroupName: m.J2GroupName,
+			J2GroupFull: m.J2GroupFull,
+			J2TaskName:  m.J2TaskName,
+			J2TaskFull:  m.J2TaskFull,
+			J2Kind:      m.J2Kind,
+			J2Instance:  m.J2Instance,
 		}
 	}
 }

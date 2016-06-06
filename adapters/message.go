@@ -24,4 +24,12 @@ type Message struct {
 	Unit      string
 	Hostname  string
 	MachineID string
+
+	J2JobName   string
+	J2GroupName string
+	J2GroupFull string
+	J2TaskName  string
+	J2TaskFull  string
+	J2Kind      string
+	J2Instance  string
 }
